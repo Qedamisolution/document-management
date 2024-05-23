@@ -119,6 +119,7 @@ class DocumentController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->messages(), 409);
         }
+        $file = $request->file('uploadFile');
 
         try {
 
@@ -152,7 +153,14 @@ class DocumentController extends Controller
                 'message' => 'Error in storing document in ' . $location,
             ], 409);
         }
-        return $this->documentRepository->saveDocument($request, $path);
+        // Get file type and size
+        $fileType = $file->getMimeType();
+        $fileSize = $file->getSize();
+
+        // $request->size = $fileSize;
+        // $request->type = $fileType;
+
+        return $this->documentRepository->saveDocument($request, $path, $fileSize, $fileType);
     }
 
     public function updateDocument(Request $request, $id)

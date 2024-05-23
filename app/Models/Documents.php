@@ -22,7 +22,7 @@ class Documents extends Model
 
     protected $fillable = [
         'categoryId', 'name', 'description', 'url', 'createdBy',
-        'modifiedBy', 'isDeleted', 'location', 'isPermanentDelete'
+        'modifiedBy', 'isDeleted', 'location', 'isPermanentDelete', 'size', 'type'
     ];
 
     public function categories()

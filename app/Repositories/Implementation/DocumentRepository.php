@@ -319,7 +319,7 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
             ->where('userId', $userId)
             ->get();
         $query = Documents::select([
-            'documents.id', 'documents.name', 'documents.url', 'documents.createdDate', 'documents.description',
+            'documents.id', 'documents.name', 'documents.url', 'documents.size', 'documents.type', 'documents.createdDate', 'documents.description',
             'categories.id as categoryId', 'categories.name as categoryName', 'documents.location',
             DB::raw("CONCAT(users.firstName,' ', users.lastName) as createdByName"),
             DB::raw("(SELECT max(documentUserPermissions.endDate) FROM documentUserPermissions

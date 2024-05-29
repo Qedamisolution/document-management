@@ -72,6 +72,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user', [UserController::class, 'index']);
     });
 
+    Route::group(['middleware' => ['hasToken:USER_VIEW_USERS']], function () {
+        Route::get('/users/totalUsers', [UserController::class, 'totalUsers']);
+        Route::get('/users/getTotal', [UserController::class, 'getNumberOfUsers']);
+    });
+
     Route::get('/user-dropdown', [UserController::class, 'dropdown']);
 
     Route::middleware('hasToken:USER_CREATE_USER')->group(function () {
@@ -112,6 +117,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/category/dropdown', [CategoryController::class, 'GetAllCategoriesForDropDown']);
     Route::middleware('hasToken:DOCUMENT_CATEGORY_MANAGE_DOCUMENT_CATEGORY')->group(function () {
         Route::get('category', [CategoryController::class, 'index']);
+        Route::get('category/getTotal', [CategoryController::class, 'getNumberOfCategories']);
         Route::post('/category', [CategoryController::class, 'create']);
         Route::put('/category/{id}', [CategoryController::class, 'update']);
         Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
@@ -133,6 +139,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['middleware' => ['hasToken:ROLE_VIEW_ROLES']], function () {
         Route::get('/role', [RoleController::class, 'index']);
+        Route::get('/role/getTotal', [RoleController::class, 'getNumberOfRoles']);
     });
 
     Route::middleware('hasToken:ROLE_CREATE_ROLE')->group(function () {
@@ -163,7 +170,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/document/{id}/readText/{isVersion}', [DocumentController::class, 'readTextDocument']);
     Route::middleware('hasToken:ALL_DOCUMENTS_VIEW_DOCUMENTS')->group(function () {
         Route::get('/documents', [DocumentController::class, 'getDocuments']);
+        Route::get('/documents/getTotal', [DocumentController::class, 'getNumberOfDocuments']);
+        Route::get('/documents/getDocumentsByAttribute', [DocumentController::class, 'getDocumentsByAttribute']);
     });
+
 
     // Route::group(['middleware' => ['hasToken:ALL_DOCUMENTS_EDIT_DOCUMENT,ASSIGNED_DOCUMENTS_EDIT_DOCUMENT']], function () {
     //     Route::post('/document', [DocumentController::class, 'saveDocument']);
@@ -176,6 +186,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/document/assignedDocuments', [DocumentController::class, 'assignedDocuments']);
 
     Route::get('/document/{id}', [DocumentController::class, 'getDocumentbyId']);
+
 
     Route::group(['middleware' => ['hasToken:ALL_DOCUMENTS_EDIT_DOCUMENT,ASSIGNED_DOCUMENTS_EDIT_DOCUMENT']], function () {
         Route::get('/document/{id}/getMetatag', [DocumentController::class, 'getDocumentMetatags']);
@@ -249,6 +260,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware('hasToken:USER_ASSIGN_USER_ROLE')->group(function () {
         Route::get('/roleusers/{roleId}', [RoleUsersController::class, 'getRoleUsers']);
+        Route::get('/getUserPerRole', [RoleUsersController::class, 'getUserPerRole']);
     });
 
     Route::middleware('hasToken:USER_ASSIGN_USER_ROLE')->group(function () {

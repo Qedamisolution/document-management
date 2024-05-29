@@ -10,4 +10,5 @@ interface RoleRepositoryInterface extends BaseRepositoryInterface
      public function createRole(array $attributes);
      public function updateRoleClaim($model, $id, $userRoles);
      public function getRolesForDropdown();
+     public function getNumberOfRoles();
 }

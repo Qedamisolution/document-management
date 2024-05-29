@@ -36,4 +36,8 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             return true;
         }
     }
+    public function getNumberOfCategories()
+    {
+        return Categories::count();
+    }
 }

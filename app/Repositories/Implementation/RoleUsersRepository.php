@@ -68,4 +68,15 @@ class RoleUsersRepository extends BaseRepository implements RoleUsersRepositoryI
             ], 409);
         }
     }
+    public function usersPerRole()
+    {
+        // Get the count of users for each role, including the role name
+        $usersCountPerRole = DB::table('userroles')
+            ->join('roles', 'userroles.roleId', '=', 'roles.id')
+            ->select('roles.name as roleName', DB::raw('count(userroles.userId) as total'))
+            ->groupBy('roles.id', 'roles.name')
+            ->get();
+
+        return $usersCountPerRole;
+    }
 }

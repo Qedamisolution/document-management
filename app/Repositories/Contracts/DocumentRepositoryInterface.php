@@ -14,4 +14,7 @@ interface DocumentRepositoryInterface extends BaseRepositoryInterface
     public function assignedDocumentsCount($attributes);
     public function getDocumentByCategory();
     public function getDocumentbyId($id);
+
+    public function getDocumentsByAttribute($attributes);
+    public function getNumberOfDocuments();
 }

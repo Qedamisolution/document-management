@@ -23,6 +23,11 @@ class UserController extends Controller
         return response()->json($this->userRepository->all());
     }
 
+    public function totalUsers(Request $request)
+    {
+        return response()->json($this->userRepository->totalUsers($request));
+    }
+
     public function dropdown()
     {
         return response()->json($this->userRepository->getUsersForDropdown());
@@ -125,5 +130,9 @@ class UserController extends Controller
         ]);
 
         return response()->json([], 200);
+    }
+    public function getNumberOfUsers()
+    {
+        return response()->json($this->userRepository->getNumberOfUsers());
     }
 }

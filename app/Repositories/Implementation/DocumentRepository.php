@@ -45,7 +45,7 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
     {
 
         $query = Documents::select([
-            'documents.id', 'documents.name', 'documents.url', 'documents.createdDate', 'documents.description', 'documents.location',
+            'documents.id', 'documents.name', 'documents.url', 'documents.createdDate', 'documents.description', 'documents.location', 'documents.size', 'documents.type',
             'categories.id as categoryId', 'categories.name as categoryName',
             DB::raw("CONCAT(users.firstName,' ', users.lastName) as createdByName")
         ])
@@ -106,6 +106,48 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
     }
 
     public function getDocumentsCount($attributes)
+    {
+        $query = Documents::query()
+            ->join('categories', 'documents.categoryId', '=', 'categories.id')
+            ->join('users', 'documents.createdBy', '=', 'users.id');
+
+        if ($attributes->categoryId) {
+            $query = $query->where('categoryId', $attributes->categoryId)
+                ->orWhere('categories.parentId', $attributes->categoryId);
+        }
+
+        if ($attributes->name) {
+            $query = $query->where('documents.name', 'like', '%' . $attributes->name . '%')
+                ->orWhere('documents.description',  'like', '%' . $attributes->name . '%');
+        }
+
+        if ($attributes->location) {
+            $query = $query->where('documents.location', '=',  $attributes->location);
+        }
+
+        if ($attributes->metaTags) {
+            $metaTags = $attributes->metaTags;
+            $query = $query->whereExists(function ($query) use ($metaTags) {
+                $query->select(DB::raw(1))
+                    ->from('documentMetaDatas')
+                    ->whereRaw('documentMetaDatas.documentId = documents.id')
+                    ->where('documentMetaDatas.metatag', 'like', '%' . $metaTags . '%');
+            });
+        }
+
+        if ($attributes->createDateString) {
+
+            $startDate = Carbon::parse($attributes->createDateString)->setTimezone('UTC');
+            $endDate = Carbon::parse($attributes->createDateString)->setTimezone('UTC')->addDays(1)->addSeconds(-1);
+
+            $query = $query->whereBetween('documents.createdDate', [$startDate, $endDate]);
+        }
+
+        $count = $query->count();
+        return $count;
+    }
+
+    public function getDocumentsByAttribute($attributes)
     {
         $query = Documents::query()
             ->join('categories', 'documents.categoryId', '=', 'categories.id')
@@ -630,5 +672,9 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
             $document['isAllowDownload'] = false;
             return $document;
         }
+    }
+    public function getNumberOfDocuments()
+    {
+        return Documents::count();
     }
 }

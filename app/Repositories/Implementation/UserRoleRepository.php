@@ -5,6 +5,7 @@ namespace App\Repositories\Implementation;
 use App\Models\UserRoles;
 use App\Repositories\Implementation\BaseRepository;
 use App\Repositories\Contracts\UserRoleRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 
 //use Your Model
@@ -14,7 +15,7 @@ use App\Repositories\Contracts\UserRoleRepositoryInterface;
  */
 class UserRoleRepository extends BaseRepository implements UserRoleRepositoryInterface
 {
-      /**
+    /**
      * @var Model
      */
     protected $model;

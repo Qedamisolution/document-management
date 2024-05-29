@@ -80,4 +80,8 @@ class CategoryController extends Controller
     {
         return response()->json($this->categoryRepository->all());
     }
+    public function getNumberOfCategories()
+    {
+        return response()->json($this->categoryRepository->getNumberOfCategories());
+    }
 }

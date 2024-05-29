@@ -90,7 +90,7 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
             }
 
             $model->save();
-            
+
             $this->resetModel();
 
             $result = $this->parseResult($model);
@@ -102,5 +102,9 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
                 'message' => 'Error in saving data.',
             ], 409);
         }
+    }
+    public function getNumberOfRoles()
+    {
+        return Roles::count();
     }
 }

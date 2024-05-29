@@ -21,6 +21,12 @@ class RoleUsersController extends Controller
 
     public function updateRoleUsers(Request $request, $roleId)
     {
-        return response()->json($this->roleUsersRepository->updateRoleUsers($roleId,$request));
+        return response()->json($this->roleUsersRepository->updateRoleUsers($roleId, $request));
     }
+    public function getUserPerRole()
+    {
+        return response()->json($this->roleUsersRepository->usersPerRole());
+    }
+
+
 }

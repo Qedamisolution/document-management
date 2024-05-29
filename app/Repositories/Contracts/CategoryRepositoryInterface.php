@@ -6,4 +6,6 @@ use App\Repositories\Contracts\BaseRepositoryInterface;
 interface CategoryRepositoryInterface extends BaseRepositoryInterface
 {
     public function deleteCategory($id);
+
+    public function getNumberOfCategories();
 }

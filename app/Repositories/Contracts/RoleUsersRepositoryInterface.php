@@ -8,4 +8,5 @@ interface RoleUsersRepositoryInterface extends BaseRepositoryInterface
 {
     public function getRoleUsers($id);
     public function updateRoleUsers($roleId, $request);
+    public function usersPerRole();
 }

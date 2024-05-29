@@ -87,4 +87,8 @@ class RoleController extends Controller
     {
         return response($this->roleRepository->delete($id), 204);
     }
+    public function getNumberOfRoles()
+    {
+        return response()->json($this->roleRepository->getNumberOfRoles());
+    }
 }

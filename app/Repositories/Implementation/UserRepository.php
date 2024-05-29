@@ -35,6 +35,14 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return Users::class;
     }
 
+    public function totalUsers($attribute)
+    {
+        // Assuming you want to count users who registered within the last $numberOfDays
+        $usersCount = Users::whereDate('created_at', '>=', now()->subDays($attribute->numberOfDays))->count();
+
+        return $usersCount;
+    }
+
     public function createUser(array $attributes)
     {
         try {
@@ -124,5 +132,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
                 'message' => 'Error in saving data.',
             ], 409);
         }
+    }
+    public function getNumberOfUsers()
+    {
+        return Users::count();
     }
 }

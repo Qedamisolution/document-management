@@ -46,6 +46,17 @@ class DocumentController extends Controller
             ->withHeaders(['totalCount' => $count, 'pageSize' => $queryString->pageSize, 'skip' => $queryString->skip]);
     }
 
+
+    public function getDocumentsByAttribute(Request $request)
+    {
+        $queryString = (object) $request->all();
+
+        $count = $this->documentRepository->getDocumentsByAttribute($queryString);
+        return response()->json(['count' => $count]);
+    }
+
+
+
     public function officeviewer(Request $request, $id)
     {
         $isTokenAvailable = $this->documenTokenRepository->getDocumentPathByToken($id, $request);
@@ -208,5 +219,9 @@ class DocumentController extends Controller
     {
         $this->userNotificationRepository->markAsReadByDocumentId($id);
         return response()->json($this->documentRepository->getDocumentbyId($id));
+    }
+    public function getNumberOfDocuments()
+    {
+        return response()->json($this->documentRepository->getNumberOfDocuments());
     }
 }

@@ -168,6 +168,12 @@ class ArchiveDocumentRepository extends BaseRepository implements ArchiveDocumen
         return $count;
     }
 
+    public function getNumberOfArchivedDocuments()
+    {
+        return Documents::where('isDeleted', '=', 'true')->count();
+    }
+
+
     public function restoreDocument($id)
     {
         try {

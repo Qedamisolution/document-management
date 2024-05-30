@@ -24,6 +24,12 @@ class ArchiveDocumentController extends Controller
             ->withHeaders(['totalCount' => $count, 'pageSize' => $queryString->pageSize, 'skip' => $queryString->skip]);
     }
 
+
+    public function getArchivedDocuments()
+    {
+        return response()->json($this->documentRepository->getNumberOfArchivedDocuments());
+    }
+
     public function restoreDocument(Request $request, $id)
     {
         return $this->documentRepository->restoreDocument($id);

@@ -13,4 +13,6 @@ interface DocumentPermissionRepositoryInterface extends BaseRepositoryInterface
      public function deleteDocumentUserPermission($id);
      public function deleteDocumentRolePermission($id);
      public function getIsDownloadFlag($id, $isPermission);
+
+     public function getDocumentsPerRole();
 }

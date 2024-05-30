@@ -37,9 +37,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function totalUsers($attribute)
     {
-        // Assuming you want to count users who registered within the last $numberOfDays
         $usersCount = Users::whereDate('created_at', '>=', now()->subDays($attribute->numberOfDays))->count();
-
         return $usersCount;
     }
 

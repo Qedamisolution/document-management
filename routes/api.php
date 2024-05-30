@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware('hasToken:ARCHIVE_DOCUMENT_VIEW_DOCUMENTS')->group(function () {
         Route::get('/archived-documents', [ArchiveDocumentController::class, 'getDocuments']);
+        Route::get('/archived-documents/getTotal', [ArchiveDocumentController::class, 'getArchivedDocuments']);
     });
 
     Route::middleware('hasToken:ARCHIVE_DOCUMENT_RESTORE_DOCUMENT')->group(function () {
@@ -171,6 +172,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('hasToken:ALL_DOCUMENTS_VIEW_DOCUMENTS')->group(function () {
         Route::get('/documents', [DocumentController::class, 'getDocuments']);
         Route::get('/documents/getTotal', [DocumentController::class, 'getNumberOfDocuments']);
+        Route::get('/documents/totalDocuments', [DocumentController::class, 'totalDocuments']);
         Route::get('/documents/getDocumentsByAttribute', [DocumentController::class, 'getDocumentsByAttribute']);
     });
 
@@ -218,6 +220,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['middleware' => ['hasToken:ALL_DOCUMENTS_SHARE_DOCUMENT,ASSIGNED_DOCUMENTS_SHARE_DOCUMENT']], function () {
         Route::get('/DocumentRolePermission/{id}', [DocumentPermissionController::class, 'edit']);
+        Route::get('/getDocumentsPerRole', [DocumentPermissionController::class, 'getDocumentsPerRole']);
     });
 
     Route::group(['middleware' => ['hasToken:ALL_DOCUMENTS_SHARE_DOCUMENT,ASSIGNED_DOCUMENTS_SHARE_DOCUMENT']], function () {

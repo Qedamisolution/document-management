@@ -369,4 +369,15 @@ class DocumentPermissionRepository extends BaseRepository implements DocumentPer
         $count = $query->count();
         return $count > 0 ? true : false;
     }
+    public function getDocumentsPerRole()
+    {
+        // Get the count of users for each role, including the role name
+        $docCountPerRole = DB::table('documentrolepermissions')
+            ->join('roles', 'documentrolepermissions.roleId', '=', 'roles.id')
+            ->select('roles.name as roleName', DB::raw('count(documentrolepermissions.documentId) as total'))
+            ->groupBy('roles.id', 'roles.name')
+            ->get();
+
+        return $docCountPerRole;
+    }
 }

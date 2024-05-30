@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use App\Repositories\Implementation\BaseRepository;
 use App\Repositories\Contracts\DocumentRepositoryInterface;
 use App\Repositories\Exceptions\RepositoryException;
+use League\CommonMark\Node\Block\Document;
 
 //use Your Model
 
@@ -676,5 +677,10 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
     public function getNumberOfDocuments()
     {
         return Documents::count();
+    }
+    public function totalDocuments($attribute)
+    {
+        $docCount = Documents::whereDate('createdDate', '>=', now()->subDays($attribute->numberOfDays))->count();
+        return $docCount;
     }
 }

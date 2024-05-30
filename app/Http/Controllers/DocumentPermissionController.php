@@ -53,4 +53,8 @@ class DocumentPermissionController extends Controller
     {
         return response()->json($this->documentPermissionRepository->getIsDownloadFlag($id, $isPermission));
     }
+    public function getDocumentsPerRole()
+    {
+        return response()->json($this->documentPermissionRepository->getDocumentsPerRole());
+    }
 }

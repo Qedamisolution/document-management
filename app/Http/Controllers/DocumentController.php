@@ -224,4 +224,9 @@ class DocumentController extends Controller
     {
         return response()->json($this->documentRepository->getNumberOfDocuments());
     }
+    public function totalDocuments(Request $request)
+    {
+        return response()->json($this->documentRepository->totalDocuments($request));
+    }
+
 }

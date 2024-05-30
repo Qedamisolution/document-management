@@ -10,4 +10,6 @@ interface ArchiveDocumentRepositoryInterface extends BaseRepositoryInterface
     public function getArchiveDocumentsCount($attributes);
     public function restoreDocument($id);
     public function deleteDocument($id);
+
+    public function getNumberOfArchivedDocuments();
 }

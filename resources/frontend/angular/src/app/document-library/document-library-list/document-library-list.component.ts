@@ -64,6 +64,8 @@ export class DocumentLibraryListComponent
     'createdDate',
     'expiredDate',
     'createdBy',
+    'size',
+    'type',
   ];
   isLoadingResults = true;
   documentResource: DocumentResource;

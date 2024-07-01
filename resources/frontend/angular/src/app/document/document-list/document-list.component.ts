@@ -65,6 +65,8 @@ export class DocumentListComponent
     'location',
     'createdDate',
     'createdBy',
+    'size',
+    'type',
   ];
   isLoadingResults = true;
   documentResource: DocumentResource;
@@ -90,7 +92,8 @@ export class DocumentListComponent
     public clonerService: ClonerService,
     private translationService: TranslationService,
     private commonService: CommonService,
-    private toastrService: ToastrService  ) {
+    private toastrService: ToastrService
+  ) {
     super();
     this.documentResource = new DocumentResource();
     this.documentResource.pageSize = 10;

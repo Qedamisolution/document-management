@@ -1,12 +1,155 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
   <div class="card">
     <div class="header">
-      <h2>{{'DOCUMENTS_BY_CATEGORY' | translate}}</h2>
+      <h1 style="text-align: center; margin: 10px">
+        {{ "DASHBOARD" | translate }}
+      </h1>
     </div>
     <div class="body">
-      <ngx-charts-pie-chart [results]="single" legendTitle="{{'DOCUMENT_CATEGORIES' | translate}}" [legend]="true"
-        [labels]="true">
-      </ngx-charts-pie-chart>
+      <div class="row gap-2 w-[40px]">
+        <div
+          class="col shadow"
+          style="
+            width: 30vw;
+            height: 80vh;
+            margin: 10px;
+            box-shadow: 20px;
+            border-radius: 2rem;
+            padding-top: 50px;
+          "
+        >
+          <h5 style="text-align: center; margin: 10px">
+            Number of User In Department
+          </h5>
+          <ngx-charts-pie-chart
+            [results]="single"
+            [legend]="true"
+            [labels]="true"
+          >
+          </ngx-charts-pie-chart>
+        </div>
+        <div
+          class="col shadow"
+          style="
+            width: 30vw;
+            margin: 10px;
+            box-shadow: 20px;
+            border-radius: 2rem;
+            padding-top: 50px;
+          "
+        >
+          <h5 style="text-align: center; margin: 10px">
+            Number of Document In Folder
+          </h5>
+          <ngx-charts-bar-vertical
+            [view]="view"
+            [results]="single"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="true"
+            legendTitle="{{ 'DOC' }}"
+            style="text-align: center"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxisLabel]="'Category'"
+            [yAxisLabel]="'Documents'"
+          >
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+
+      <div class="row gap-2 w-[40px]">
+        <div
+          class="col shadow"
+          style="
+            width: 30vw;
+            margin: 10px;
+            box-shadow: 20px;
+            border-radius: 2rem;
+            padding-top: 50px;
+          "
+        >
+          <h5 style="text-align: center; margin: 10px">Number of Total User</h5>
+          <ngx-charts-line-chart
+            [view]="view"
+            [results]="data"
+            [legend]="legend"
+            [animations]="animations"
+            [xAxis]="xAxis"
+            [yAxis]="yAxis"
+            [showYAxisLabel]="showYAxisLabel"
+            [showXAxisLabel]="showXAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [results]="data"
+          >
+          </ngx-charts-line-chart>
+        </div>
+        <div
+          class="col shadow"
+          style="
+            width: 30vw;
+            margin: 10px;
+            box-shadow: 20px;
+            border-radius: 2rem;
+            padding-top: 50px;
+          "
+        >
+          <h5 style="text-align: center; margin: 10px">
+            Number of User In Department
+          </h5>
+          <ngx-charts-bar-vertical
+            [view]="view"
+            [results]="sampleData"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxisLabel]="'Department'"
+            [yAxisLabel]="'User'"
+          >
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row gap-2 w-[40px]"
+      style="
+        margin: 10px;
+        box-shadow: 20px;
+        border-radius: 2rem;
+        padding-top: 50px;
+      "
+    >
+      <div
+        class="col shadow"
+        style="
+          margin: 10px;
+          box-shadow: 20px;
+          border-radius: 2rem;
+          padding-top: 50px;
+        "
+      >
+        <h5 style="text-align: center; margin: 10px">
+          Number of Total Documents
+        </h5>
+        <ngx-charts-line-chart
+          class="custom-line-chart"
+          [view]="Fullview"
+          [results]="Docdata"
+          [legend]="legend"
+          [animations]="animations"
+          [xAxis]="xAxis"
+          [yAxis]="yAxis"
+          [showYAxisLabel]="showYAxisLabel"
+          [showXAxisLabel]="showXAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="'Number of Docment'"
+          [results]="Docdata"
+        >
+        </ngx-charts-line-chart>
+      </div>
     </div>
   </div>
 </div>

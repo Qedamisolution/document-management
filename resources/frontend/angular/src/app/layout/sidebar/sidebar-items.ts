@@ -39,7 +39,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: 'document-audit-trails',
-    title: 'DOCUMENTS_AUDIT_TRAIL',
+    title: 'DOCUMENTS_AUDIT',
     icon: 'activity',
     class: '',
     groupTitle: false,

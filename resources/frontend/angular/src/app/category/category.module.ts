@@ -9,13 +9,15 @@ import { SharedModule } from '@shared/shared.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { CommentDialogComponent } from './category-list-presentation/comment-dialog.component';
 
 @NgModule({
   declarations: [
     CategoryListComponent,
     ManageCategoryComponent,
-    CategoryListPresentationComponent],
+    CategoryListPresentationComponent,
+    CommentDialogComponent,
+  ],
   imports: [
     CommonModule,
     CategoryRoutingModule,
@@ -24,7 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class CategoryModule { }
+export class CategoryModule {}

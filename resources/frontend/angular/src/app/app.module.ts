@@ -21,7 +21,7 @@ import { LoadingIndicatorModule } from '@shared/loading-indicator/loading-indica
 import { APP_BASE_HREF } from '@angular/common';
 import { environment } from '@environments/environment';
 import { MatDialogConfigurationModule } from './mat-dialog-config.module';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, `${environment.apiUrl}api/i18n/`);
 }
@@ -39,6 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     NgScrollbarModule,
+    NgxChartsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
